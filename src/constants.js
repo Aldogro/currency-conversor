@@ -1,7 +1,10 @@
 export const labels = {
-    ARS: 'Pesos Arg.',
-    ARS_BLUE: 'Pesos Arg Blue',
+    ARS: 'Pesos',
+    ARS_BLUE: 'Pesos Blue',
+    BRL: 'Reales',
+    CLP: 'Chilenos',
+    EUR: 'Euros',
+    ILS: 'Shekels',
     USD: 'Dólares',
     UYU: 'Uruguayos',
-    ILS: 'Shekels'
 }

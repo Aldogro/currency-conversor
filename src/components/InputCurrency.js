@@ -34,8 +34,17 @@ const InputCurrency = ({ label, rates }) => {
                 {conversions[label] && conversions[label].map((item) => (
                     label !== item.label &&
                     <div key={item.label} className="input-currency-card">
-                        <div className="input-currency-card-label">{labels[item.label]}</div>
-                        <div className="input-currency-card-value">{item.value.toFixed(2)}</div>
+                        <div className="input-currency-card-label">
+                            <b>{labels[item.label]}</b>
+                            {item.label !== 'USD' &&
+                                <div className="input-currency-card-label-small">
+                                    1 USD = {Number(rates[item.label]).toFixed(2)}
+                                </div>
+                            }
+                        </div>
+                        <div className="input-currency-card-value">
+                            <b>{item.value.toFixed(2)}</b>
+                        </div>
                     </div>
                 ))}
             </div>

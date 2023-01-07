@@ -21,8 +21,8 @@ const ExchangePage = () => {
     const getRates = async () => {
         const { data } = await axios.get(`${process.env.REACT_APP_EXCHANGE_RATE_API_BASE_URL}${process.env.REACT_APP_EXCHANGE_RATE_API_KEY}/latest/USD`)
         const { conversion_rates } = data
-        const { ARS, UYU, ILS } = conversion_rates
-        setRates({ ARS, UYU, ILS })
+        const { ARS, UYU, ILS, EUR, CLP, BRL } = conversion_rates
+        setRates({ ARS, UYU, ILS, EUR, CLP, BRL })
     }
 
     const fullRates = { ...rates, ARS_BLUE: blue, USD: 1 }
