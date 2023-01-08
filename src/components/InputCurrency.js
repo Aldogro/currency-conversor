@@ -3,7 +3,7 @@ import { labels } from '../constants'
 
 
 const InputCurrency = ({ label, rates }) => {
-    const [value, setValue] = useState(0)
+    const [value, setValue] = useState('')
 
     const ratesKeys = Object.keys(rates)
 
@@ -25,8 +25,9 @@ const InputCurrency = ({ label, rates }) => {
                 <input
                     type="number"
                     name={label}
-                    id={label}
                     value={value}
+                    placeholder="Monto"
+                    min="0"
                     onChange={(e) => setValue(e.target.value)}
                 />
             </div>

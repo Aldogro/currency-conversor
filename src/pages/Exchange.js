@@ -3,6 +3,7 @@ import axios from 'axios'
 import InputCurrency from '../components/InputCurrency'
 import { labels } from '../constants'
 import { getFormattedDate } from '../utils'
+import Accordion from '../components/Accordion'
 
 const ExchangePage = () => {
     const [rates, setRates] = useState({})
@@ -61,16 +62,17 @@ const ExchangePage = () => {
 
     return (
         <div className="exchange-wrapper">
-            <div className="exchange-input">
-                <label htmlFor="ARS_BLUE">Dolar Blue Hoy</label>
-                <input
-                    type="number"
-                    id="ARS_BLUE"
-                    value={blue}
-                    onChange={handleBlueChanges}
-                />
-            </div>
-
+            <Accordion>
+                <div className="exchange-input">
+                    <input
+                        type="number"
+                        value={blue}
+                        placeholder="Dólar Blue"
+                        onChange={handleBlueChanges}
+                    />
+                </div>
+            </Accordion>
+            <div className="divider" />
             <select
                 className="exchange-selector"
                 value={currency}

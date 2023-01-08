@@ -1,3 +1,6 @@
+* {
+  box-sizing: border-box;
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -97,17 +100,19 @@ code {
 
 .exchange-wrapper .exchange-input {
   display: flex;
+  width: 100%;
   flex-direction: column;
   text-align: center;
   justify-content: center;
-  margin: 15px 0px;
+  align-items: center;
+  margin: 5px 0px;
 }
 
 .exchange-wrapper .exchange-input input {
-  margin: 8px;
   border: none;
+  width: 60%;
   border-radius: 10px;
-  background-color: #e4e4e4;
+  background-color: #6baf2846;
   font-size: 1.35rem;
   padding: 14px;
   text-align: center;
@@ -118,6 +123,7 @@ code {
   width: 100%;
   text-align: center;
   border: none;
+  margin-top: 10px;
   border-radius: 10px;
   padding: 14px;
   font-size: 1.35rem;
@@ -144,10 +150,7 @@ code {
 }
 .input-currency-wrapper .input-currency-input {
   display: flex;
-  flex-direction: column;
-  text-align: center;
-  justify-content: center;
-  margin: 15px 0px;
+  margin: 10px 0px;
 }
 .input-currency-wrapper .input-currency-input input {
   margin: 8px;
@@ -193,4 +196,54 @@ code {
 .input-currency-card-label-small {
   font-size: 1rem;
   color: gray;
+}
+
+.accordion-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0px 10px;
+}
+.accordion-wrapper .accordion-header {
+  background-color: #6baf2869;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  padding: 8px;
+  text-align: center;
+}
+.accordion-wrapper .accordion-header.open {
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+.accordion-wrapper .accordion-header .accordion-toggle {
+  position: absolute;
+  top: calc(50% - 0.5rem);
+  right: 8px;
+  font-size: 1.2rem;
+  line-height: 1rem;
+  transform: rotateZ(0deg);
+  transition: all 0.5s;
+}
+.accordion-wrapper .accordion-header .accordion-toggle.open {
+  transform: rotateZ(180deg);
+}
+.accordion-wrapper .accordion-body {
+  background-color: #6baf2846;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding: 10px 0px;
+}
+.accordion-wrapper .accordion-body.closed {
+  display: none;
+}
+
+.divider {
+  width: 100%;
+  margin: 10px 0px;
+  border-top: 1px solid #6baf28;
 }
