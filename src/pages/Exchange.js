@@ -28,6 +28,7 @@ const ExchangePage = () => {
             const { ARS, UYU, ILS, EUR, CLP, BRL } = conversion_rates
             setRates({ ARS, UYU, ILS, EUR, CLP, BRL })
             setLastUpdatedRates(time_last_update_unix)
+            setError(null)
             localStorage.setItem(
                 'lastUpdatedRates',
                 time_last_update_unix
