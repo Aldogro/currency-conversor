@@ -43,6 +43,8 @@ code {
 
 .login-wrapper {
   height: calc(100vh - 250px);
+  max-width: 300px;
+  margin: 0px auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -67,12 +69,11 @@ code {
 }
 
 .login-wrapper .login-body .login-item input {
-  margin: 8px;
   border: none;
   border-radius: 10px;
   background-color: #e4e4e4;
   font-size: 1.35rem;
-  padding: 14px;
+  padding: 11px;
 }
 
 .login-wrapper .login-body button {
@@ -123,6 +124,20 @@ code {
   display: flex;
 }
 
+.exchange-wrapper .exchange-last-info {
+  margin-top: 9px;
+  font-size: 0.8rem;
+  color: grey;
+}
+.exchange-wrapper .exchange-error {
+  background: rgba(255, 99, 71, 0.24);
+  border: 2px solid tomato;
+  border-radius: 8px;
+  color: tomato;
+  margin-top: 9px;
+  padding: 10px;
+  font-size: 0.8rem;
+}
 
 .input-currency-wrapper {
   height: 90%;
