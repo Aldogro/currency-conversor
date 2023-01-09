@@ -22,29 +22,52 @@ const ExchangePage = () => {
         localStorage.setItem('selectedCurrency', e.target.value)
     }
 
+    const shouldFetchData = () => {
+        return localStorage.getItem('lastSavedRates') === null ||
+            localStorage.getItem('lastUpdatedRates') === null ||
+            new Date().getTime() / 1000 > localStorage.getItem('nextUpdate')
+    }
+
     const getRates = async () => {
         try {
-            const { data } = await axios.get(`${process.env.REACT_APP_EXCHANGE_RATE_API_BASE_URL}${process.env.REACT_APP_EXCHANGE_RATE_API_KEY}/latest/USD`)
-            const { conversion_rates, time_last_update_unix } = data
-            const { ARS, UYU, ILS, EUR, CLP, BRL } = conversion_rates
-            setRates({ ARS, UYU, ILS, EUR, CLP, BRL })
-            setLastUpdatedRates(time_last_update_unix)
-            setError(null)
-            localStorage.setItem(
-                'lastUpdatedRates',
-                time_last_update_unix
+            console.log(
+                shouldFetchData(),
+                localStorage.getItem('lastSavedRates') === null,
+                localStorage.getItem('lastUpdatedRates') === null,
+                new Date().getTime() / 1000 > localStorage.getItem('nextUpdate'),
+                new Date().getTime() / 1000,
+                localStorage.getItem('nextUpdate')
             )
-            localStorage.setItem(
-                'lastSavedRates',
-                JSON.stringify({
-                    ARS,
-                    UYU,
-                    ILS,
-                    EUR,
-                    CLP,
-                    BRL 
-                })
-            )
+            if (shouldFetchData()) {
+                const { data } = await axios.get(`${process.env.REACT_APP_EXCHANGE_RATE_API_BASE_URL}${process.env.REACT_APP_EXCHANGE_RATE_API_KEY}/latest/USD`)
+                const { conversion_rates, time_last_update_unix, time_next_update_unix } = data
+                const { ARS, UYU, ILS, EUR, CLP, BRL } = conversion_rates
+                setRates({ ARS, UYU, ILS, EUR, CLP, BRL })
+                setLastUpdatedRates(time_last_update_unix)
+                setError(null)
+                localStorage.setItem(
+                    'lastUpdatedRates',
+                    time_last_update_unix
+                )
+                localStorage.setItem(
+                    'nextUpdate',
+                    time_next_update_unix
+                )
+                localStorage.setItem(
+                    'lastSavedRates',
+                    JSON.stringify({
+                        ARS,
+                        UYU,
+                        ILS,
+                        EUR,
+                        CLP,
+                        BRL 
+                    })
+                )
+            } else {
+                setRates(JSON.parse(localStorage.getItem('lastSavedRates')))
+                setLastUpdatedRates(localStorage.getItem('lastUpdatedRates'))
+            }
         } catch (error) {
             setError(error)
             if (error.code === 'ERR_BAD_REQUEST') {
