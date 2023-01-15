@@ -1,16 +1,21 @@
 import React, { useContext } from 'react'
 import dolaruco from '../assets/dolaruco.png'
-import AuthContext from '../AuthContext'
+import AppContext from '../AppContext'
+import { AppActions } from '../StateReducer'
 
 const MainLayout = ({ children }) => {
-    const { status, logout } = useContext(AuthContext)
+    const { appState, dispatch } = useContext(AppContext)
+
+    const logout = () => {
+        dispatch({ type: AppActions.LOGOUT })
+    }
 
     return (
         <div className="main-layout">
             <header className="main-layout-header">
                 <img src={dolaruco} className="logo" alt="logo" />
             </header>
-            {status &&
+            {appState.loggedUser &&
                 <button className="main-layout-logout" onClick={logout}>
                     X
                 </button>

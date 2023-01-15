@@ -1,36 +1,33 @@
-import { useState } from 'react'
+import { useReducer } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import Routing from './routes/Routing'
-import AuthContext from './AuthContext'
+import AppContext from './AppContext'
 import MainLayout from './components/MainLayout'
+import { AppReducer } from './StateReducer'
+import { localStorageGet } from './utils'
 
 const App = () => {
-  const isLogged = localStorage.getItem('userLogin')
-  const [authStatus, setAuthStatus] = useState(['RojasGrimbegIn'].includes(isLogged))
+  const lastSavedState = localStorageGet('uyuAppState')
 
-  const login = (user, pass) => {
-    if (user === process.env.REACT_APP_USERNAME && pass === process.env.REACT_APP_PASSWORD) {
-      setAuthStatus(true)
-      localStorage.setItem('userLogin', 'RojasGrimbegIn')
-      return true
-    }
-    setAuthStatus(false)
-    return false
+  const initialState = {
+    loggedUser: false,
+    lastBlueValue: '',
+    lastSelectedCurrency: '',
+    lastSavedRates: '',
+    lastUpdatedRates: '',
+    nextUpdate: ''
   }
 
-  const logout = () => {
-    setAuthStatus(false)
-    localStorage.removeItem('userLogin')
-  }
+  const [appState, dispatch] = useReducer(AppReducer, lastSavedState ?? initialState);
 
   return (
-    <AuthContext.Provider value={{ status: authStatus, login, logout }}>
+    <AppContext.Provider value={{ appState, dispatch }}>
       <MainLayout>
         <BrowserRouter>
           <Routing />
         </BrowserRouter>
       </MainLayout>
-    </AuthContext.Provider>
+    </AppContext.Provider>
   );
 }
 

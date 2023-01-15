@@ -9,3 +9,7 @@ export const getFormattedDate = (date) => {
     
     return `${day}/${month}/${year} - ${hour}:${minutes}hs`
 }
+
+export const localStorageAdd = (key, value) => localStorage.setItem(key, JSON.stringify(value))
+
+export const localStorageGet = (key) => JSON.parse(localStorage.getItem(key))

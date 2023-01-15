@@ -1,12 +1,12 @@
 import React, { useContext } from 'react'
 import { Navigate } from 'react-router-dom'
-import AuthContext from '../AuthContext'
+import AppContext from '../AppContext'
 import { routes } from '../routes/routes'
 
 const HomePage = () => {
-    const { status } = useContext(AuthContext)
+    const { appState } = useContext(AppContext)
     
-    return <Navigate to={status ? routes.EXCHANGE : routes.LOGIN} />
+    return <Navigate to={appState.loggedUser ? routes.EXCHANGE : routes.LOGIN} />
 }
 
 export default HomePage

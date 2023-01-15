@@ -1,17 +1,18 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import AuthContext from '../AuthContext'
+import AppContext from '../AppContext'
 import { routes } from '../routes/routes'
+import { AppActions } from '../StateReducer'
 
 const LoginPage = () => {
     const navigate = useNavigate()
-    const { status, login } = useContext(AuthContext)
+    const { appState, dispatch } = useContext(AppContext)
     const [user, setUser] = useState('')
     const [pass, setPass] = useState('')
 
     const onSubmit = () => {
-        const res = login(user, pass)
-        if (res) {
+        if (process.env.REACT_APP_USERNAME === user && process.env.REACT_APP_PASSWORD === pass) {
+            dispatch({ type: AppActions.LOGIN })
             navigate(routes.EXCHANGE)
         }
         setUser('')
@@ -19,7 +20,8 @@ const LoginPage = () => {
     }
 
     useEffect(() => {
-        if (status) {
+        console.log(appState)
+        if (appState.loggedUser) {
             navigate(routes.EXCHANGE)
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps

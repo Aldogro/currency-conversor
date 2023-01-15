@@ -2,13 +2,13 @@ import { useContext } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { routes } from './routes'
 import ProtectedRoutes from './ProtectedRoutes'
-import AuthContext from '../AuthContext'
+import AppContext from '../AppContext'
 import LoginPage from '../pages/Login'
 import ExchangePage from '../pages/Exchange'
 import HomePage from '../pages/Home'
 
 const Routing = () => {
-    const { status } = useContext(AuthContext);
+    const { appState } = useContext(AppContext);
 
     return (
         <Routes>
@@ -16,7 +16,7 @@ const Routing = () => {
             <Route
                 path={routes.EXCHANGE}
                 element={
-                    <ProtectedRoutes user={status}>
+                    <ProtectedRoutes user={appState.loggedUser}>
                         <ExchangePage />
                     </ProtectedRoutes>
                 }
