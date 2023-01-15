@@ -81,6 +81,7 @@ const ExchangePage = () => {
 
     useEffect(() => {
         getRates()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (
