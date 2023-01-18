@@ -1,4 +1,4 @@
-import { localStorageAdd } from "./utils";
+import { localStorageAdd } from './utils'
 
 export const AppActions = {
     LOGIN: 'LOGIN',
@@ -14,14 +14,14 @@ export const AppReducer = (state, action) => {
     switch (action.type) {
         case AppActions.LOGIN:
             localStorageAdd('uyuAppState', { ...state, loggedUser: true })
-            return { ...state, loggedUser: true };
+            return { ...state, loggedUser: true }
         case AppActions.LOGOUT:
             localStorageAdd('uyuAppState', { ...state, loggedUser: false })
-            return { ...state, loggedUser: false };
+            return { ...state, loggedUser: false }
         case AppActions.SAVE_BLUE:
             localStorageAdd('uyuAppState', { ...state, lastBlueValue: action.payload })
             console.log(action.payload)
-            return { ...state, lastBlueValue: action.payload };
+            return { ...state, lastBlueValue: action.payload }
         case AppActions.SAVE_LAST_CURRENCY:
             localStorageAdd('uyuAppState', { ...state, lastSelectedCurrency: action.payload })
             return { ...state, lastSelectedCurrency: action.payload }
@@ -35,6 +35,6 @@ export const AppReducer = (state, action) => {
             localStorageAdd('uyuAppState', { ...state, nextUpdate: action.payload })
             return { ...state, nextUpdate: action.payload }
       default:
-        return state;
+        return state
     }
 }

@@ -18,7 +18,7 @@ const App = () => {
     nextUpdate: ''
   }
 
-  const [appState, dispatch] = useReducer(AppReducer, lastSavedState ?? initialState);
+  const [appState, dispatch] = useReducer(AppReducer, lastSavedState ?? initialState)
 
   return (
     <AppContext.Provider value={{ appState, dispatch }}>
@@ -28,7 +28,7 @@ const App = () => {
         </BrowserRouter>
       </MainLayout>
     </AppContext.Provider>
-  );
+  )
 }
 
 export default App
